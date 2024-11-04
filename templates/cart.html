@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng của bạn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Giỏ hàng của bạn</h1>
+        {% if cart %}
+            <div>
+                {% for item in cart %}
+                <div class="cart-item">
+                    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+                    <span class="cart-item-name">{{ item.name }}</span>
+                    <span class="cart-item-price">{{ item.price }} VND</span>
+                    <a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="btn">Xóa</a> <!-- Nút xóa -->
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Giỏ hàng của bạn hiện đang trống.</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Tiếp tục mua sắm</a>
+    </div>
+</body>
+</html>

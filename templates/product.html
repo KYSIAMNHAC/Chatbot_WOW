@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .product-container {
+            display: flex; /* Sử dụng Flexbox để căn chỉnh hình ảnh và mô tả */
+            background-color: #ffffff; /* Màu nền khung trắng */
+            border-radius: 8px; /* Bo góc cho khung */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng cho khung */
+            padding: 20px; /* Khoảng cách bên trong khung */
+            margin: 20px 0; /* Khoảng cách bên ngoài khung */
+        }
+
+        .product-image {
+            flex: 1; /* Chiếm không gian để hình ảnh bên trái */
+            text-align: center; /* Căn giữa hình ảnh */
+        }
+
+        .product-description {
+            flex: 2; /* Chiếm không gian để mô tả bên phải */
+            padding-left: 20px; /* Khoảng cách bên trái cho mô tả */
+        }
+
+        .product-image img {
+            max-width: 50%; /* Hình ảnh không lớn hơn khung */
+            height: auto; /* Tự động điều chỉnh chiều cao */
+        }
+        .product-name {
+            background-color: #f0f0f0; /* Màu nền cho khung tên sản phẩm */
+            border-radius: 5px; /* Bo góc cho khung tên */
+            padding: 10px; /* Khoảng cách bên trong khung tên */
+            text-align: center; /* Căn giữa tên sản phẩm */
+            margin-bottom: 20px; /* Khoảng cách giữa tên sản phẩm và phần mô tả */
+            font-size: 24px; /* Kích thước chữ cho tên sản phẩm */
+            color: #1643d8; /* Màu chữ cho tên sản phẩm */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-name">{{ product.name }}</div> 
+        
+        <div class="product-container"> <!-- Khung chứa hình ảnh và mô tả -->
+            <div class="product-image">
+                <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+            </div>
+            <div class="product-description">
+                <p style="font-size: 16px; color: #0a0a0a;">{{ product.description }}</p>
+                <p style="font-size: 20px; font-weight: bold; color: #3976e6;">Giá: {{ product.price }} VND</p>
+                <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn" onclick="showAlert()">Thêm vào giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAlert() {
+            alert('Sản phẩm đã được thêm vào giỏ hàng!');
+        }
+    </script>
+</body>
+</html>
+
+

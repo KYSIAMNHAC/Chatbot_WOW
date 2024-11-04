@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Phần đầu trang với logo và thanh tìm kiếm -->
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" width="auto" height="auto">
+        </div>
+        <div class="search-bar">
+            <form action="{{ url_for('index') }}" method="GET">
+                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm...">
+                <button type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+    </header>
+<body>
+    <div class="container">
+        <h1>Chào mừng đến với cửa hàng WOWSHOP của chúng tôi!</h1>
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="product-list">
+            {% for product in products %}
+            <div class="product-item">
+                <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p class="price">{{ product.price }} VND</p>
+                <a href="{{ url_for('product', product_id=product.id) }}">Chi tiết</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Chatbot_QuanAo"
+  agent-id="b692464c-78b9-4ba1-bddc-a5cc6b7c0c25"
+  language-code="vi"
+></df-messenger>
+</body>
+</html>
