@@ -42,7 +42,7 @@ def remove_from_cart(product_id):
     return redirect(url_for('cart_page'))
 
 # Đọc dữ liệu từ file Excel
-data_file = 'E:/Tương tác người máy/WEB/clothes_data.xlsx'
+data_file = 'clothes_data.xlsx'
 clothing_df = pd.read_excel(data_file)
 
 # Xóa các ký tự trắng trong tên cột
